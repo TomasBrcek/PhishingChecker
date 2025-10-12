@@ -1,0 +1,7 @@
+pandas
+python-whois
+tldextract
+matplotlib
+seaborn
+scikit-learn
+categorical-encoding
