@@ -4,4 +4,4 @@ tldextract
 matplotlib
 seaborn
 scikit-learn
-categorical-encoding
+category-encoders
