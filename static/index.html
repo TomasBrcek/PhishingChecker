@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Phishing Checker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="header">
+    <h1>Phishing Checker</h1>
+    <p class="description">Tool for detecting phishing URLs. Enter the URL you want to check:</p>
+  </div>
+  
+  <div class="input">
+    <input id="url" placeholder="https://example.com/login" />
+    <button id="check">Verify</button>
+  </div>
+  
+  <div id="output" class="result">
+    <p id="message">Please enter a URL and click "Verify" to check if it's a phishing site.</p>
+    <h2 id="legit" class="legit1" style="display: none;"></h2>
+    <div id="probability" class="probability1" style="display: none;"></div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>

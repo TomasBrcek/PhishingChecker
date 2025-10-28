@@ -5,3 +5,10 @@ matplotlib
 seaborn
 scikit-learn
 category-encoders
+fastapi
+uvicorn[standard]
+joblib
+numpy
+requests
+python-multipart
+python-dotenv
