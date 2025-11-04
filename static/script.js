@@ -1,4 +1,3 @@
-// make enter click to send event
 document.getElementById("url").addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
         document.getElementById("check").click();

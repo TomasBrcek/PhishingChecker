@@ -107,6 +107,9 @@ def extract_url_features(url: str) -> dict:
     
     # Použij cache-ovaný extractor
     ext = _extractor(url)
+
+    domain = ext.domain or ""
+    subdomain = ext.subdomain or ""
     
     # Lowercase URL raz na začiatku
     url_lower = url.lower()
@@ -135,6 +138,8 @@ def extract_url_features(url: str) -> dict:
     
     # Skombinuj domain + suffix raz
     full_domain = f"{ext.domain}.{ext.suffix}"
+
+    specials = re.findall(r"[-@=?%_/\.]", url)
     
     # Vytvor features dict naraz
     features = {
@@ -150,6 +155,7 @@ def extract_url_features(url: str) -> dict:
         'count_qm': count_qm,
         'count_eq': count_eq,
         'count_slash': count_slash,
+        "count_double_slash": url.count("//") - 1 if url.count("//") > 1 else 0,
         'count_digits': count_digits,
         'has_ip': 1 if _ip_pattern.match(hostname) else 0,
         'has_https': 1 if url_lower.startswith("https") else 0,
@@ -158,7 +164,24 @@ def extract_url_features(url: str) -> dict:
         'subdomain_len': len(ext.subdomain),
         'domain': ext.domain,
         'suffix': ext.suffix,
-        'domain_entropy': url_entropy(hostname)
+        'domain_entropy': url_entropy(hostname),
+        "num_subdomains": subdomain.count(".") + (1 if subdomain else 0),
+        "path_depth": path.count("/"),
+        "has_www": 1 if "www" in subdomain else 0,
+        "has_double_https": 1 if url.count("https") > 1 else 0,
+        "has_port": 1 if ":" in parsed.netloc else 0,
+        "has_fragment": 1 if parsed.fragment else 0,
+        "url_ratio_digits": sum(c.isdigit() for c in url) / len(url),
+        "url_ratio_specials": len(specials) / len(url),
+        "contains_encoded_chars": 1 if "%" in url else 0,
+        "has_repeat_chars": 1 if re.search(r"(.)\1{3,}", url) else 0,
+
+        "domain_entropy": url_entropy(domain),
+        "domain_char_diversity": len(set(domain)) / len(domain) if domain else 0,
+        "domain_has_digit": 1 if any(c.isdigit() for c in domain) else 0,
+        "domain_starts_with_digit": 1 if domain and domain[0].isdigit() else 0,
+        "tld_length": len(ext.suffix or ""),
+        "entropy_per_len": url_entropy(domain) / (len(domain)+1)
     }
 
     extract_whois_features(features, full_domain)
