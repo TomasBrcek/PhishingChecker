@@ -13,3 +13,4 @@ requests
 python-multipart
 python-dotenv
 lightgbm
+xgboost
