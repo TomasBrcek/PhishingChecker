@@ -3,7 +3,7 @@ from pathlib import Path
 import random
 import requests
 
-ENDPOINT_DEFAULT = "http://0.0.0.0:8000/predict"
+ENDPOINT_DEFAULT = "http://localhost:8000/predict"
 
 def load_urls(path, n):
     p = Path(path)

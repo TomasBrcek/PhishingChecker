@@ -15,7 +15,7 @@ document.getElementById("check").onclick = async () => {
     message.style.display = "block";
     message.textContent = "Verifying...";
     try {
-        const resp = await fetch("http://0.0.0.0:8000/predict", {
+        const resp = await fetch("http://localhost:8000/predict", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ url })

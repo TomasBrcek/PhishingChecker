@@ -49,7 +49,7 @@ Návod je rovnaký pre Windows, macOS aj Linux:
 #### 1. Klonuj repozitár
 
 ```bash
-git clone git@github.com:TomasBrcek/PhishingChecker.git
+git clone https://github.com/TomasBrcek/PhishingChecker.git
 cd PhishingChecker
 ```
 
@@ -85,7 +85,7 @@ pip install -r requirements.txt
 #### 4. Spusti aplikáciu
 
 ```bash
-python main.py
+python app.py
 ```
 
 ### Docker / Docker Compose
